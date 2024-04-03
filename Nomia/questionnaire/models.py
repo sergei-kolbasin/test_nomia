@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models import Model
-
 from django.utils.translation import gettext_lazy as _
 
 
@@ -15,9 +13,9 @@ class Institution(models.Model):
     name = models.CharField(max_length=255, null=False, unique=True, verbose_name=_('Название заведения'))
     city_country = models.CharField(max_length=255, null=False, verbose_name=_('Страна и город'))
     address = models.CharField(max_length=200, null=False, unique=True, verbose_name=_('Адрес'))
-    business_type = models.CharField(max_length=50, null=False, verbose_name=_('Тип бизнеса'))
-    direction = models.CharField(max_length=50, null=False, verbose_name=_('Направление'))
-    service_type = models.CharField(max_length=50, null=False, verbose_name=_('Тип сервисов'))
+    business_type = models.CharField(max_length=50, null=False, blank=True, verbose_name=_('Тип бизнеса'))
+    direction = models.CharField(max_length=50, null=False, blank=True, verbose_name=_('Направление'))
+    service_type = models.CharField(max_length=50, null=False, blank=True, verbose_name=_('Тип сервисов'))
 
     def __str__(self):
         return (f"Название заведения - {self.name}\n"
