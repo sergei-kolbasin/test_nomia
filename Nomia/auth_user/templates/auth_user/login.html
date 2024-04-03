@@ -1,0 +1,21 @@
+{% extends 'auth_user/base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label for="username">Введите Ваш логин:</label>
+        <input type="text" id="username" name="username" required>
+    </p>
+        <p>
+        <label for="password">Введите Ваш пароль:</label>
+        <input type="password" id="password" name="password" required>
+    </p>
+    </form>
+    <button type="submit">Войти</button>
+
+{% endblock %}
