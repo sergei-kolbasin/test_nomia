@@ -6,6 +6,7 @@ class Institution(models.Model):
     """
     Модель заведения
     """
+
     class Meta:
         verbose_name_plural = _("Заведения")
         verbose_name = _("Заведение")
@@ -27,6 +28,7 @@ class Question(models.Model):
     """
     Модель вопроса
     """
+
     class Meta:
         verbose_name_plural = _("Вопросы")
         verbose_name = _("Вопрос")
@@ -49,6 +51,7 @@ class Answer(models.Model):
     """
     Модель ответа
     """
+
     class Meta:
         verbose_name_plural = _("Ответы")
         verbose_name = _("Ответ")
@@ -75,6 +78,7 @@ class Survey(models.Model):
     """
     Модель опроса
     """
+
     class Meta:
         verbose_name_plural = _("Опросы")
         verbose_name = _("Опрос")
