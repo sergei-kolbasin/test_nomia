@@ -10,7 +10,9 @@ Enter
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Submit</button>
+    <button type="submit">Продолжить</button>
 </form>
+
+<button onclick="goBack()">Назад</button>
 
 {% endblock %}
