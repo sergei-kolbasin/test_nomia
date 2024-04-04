@@ -129,7 +129,7 @@ class BusinessType(View):
             if business_type == 'restaurant':
                 return redirect((reverse('questionnaire:catering')))
             elif business_type == 'retail':
-                return redirect((reverse('questionnaire:retail_type')))
+                return redirect((reverse('questionnaire:retail')))
             elif business_type == 'services':
                 return redirect((reverse('questionnaire:services_type')))
 
@@ -169,26 +169,6 @@ class Catering(View):
         return render(request, 'questionnaire/invalid_form.html')
 
 
-class Retail(View):
-    """
-    Страница с выбором типа ритейла
-    """
-    pass
-
-
-class RetailType(View):
-    """
-    Страница с выбором вида заказов в ритейле
-    """
-    pass
-
-
-class ServicesType(View):
-    """
-    Страница с выбором типом услуг
-    """
-
-
 class CateringType(View):
     """
     Страница с выбором типов сервисов в общепите
@@ -220,3 +200,106 @@ class CateringType(View):
             return redirect((reverse('questionnaire:account')))
 
         return render(request, 'questionnaire/invalid_form.html')
+
+
+class Retail(View):
+    """
+    Страница с выбором типа ритейла
+    """
+    def get(self, request: HttpRequest) -> HttpResponse:
+        question = Question.objects.get(title='Выберите тип ритейла')
+        selected_answers = Answer.objects.filter(survey__question=question)
+
+        form = SurveyForm(instance=question)
+        form.fields['answers'].queryset = selected_answers
+
+        context = {
+            'form': form,
+            'question': question
+        }
+
+        return render(request, 'questionnaire/retail_type.html', context=context)
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        form = SurveyForm(request.POST)
+
+        if form.is_valid():
+            direction = str(form.cleaned_data['answers'][0].text)
+            name = request.session.get('new_institution')['name']
+            institution = Institution.objects.get(name=name)
+            institution.direction = direction
+            institution.save()
+            return redirect((reverse('questionnaire:retail_type')))
+
+        return render(request, 'questionnaire/invalid_form.html')
+
+
+class RetailType(View):
+    """
+    Страница с выбором вида заказов в ритейле
+    """
+
+    def get(self, request: HttpRequest) -> HttpResponse:
+        question = Question.objects.get(title='Какой вид заказов?')
+        selected_answers = Answer.objects.filter(survey__question=question)
+
+        form = SurveyForm(instance=question)
+        form.fields['answers'].queryset = selected_answers
+
+        context = {
+            'form': form,
+            'question': question
+        }
+
+        return render(request, 'questionnaire/retail_type.html', context=context)
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        form = SurveyForm(request.POST)
+
+        if form.is_valid():
+            service_type = str(form.cleaned_data['answers'][0].text)
+            name = request.session.get('new_institution')['name']
+            institution = Institution.objects.get(name=name)
+            institution.service_type = service_type
+            institution.save()
+            return redirect((reverse('questionnaire:account')))
+
+        return render(request, 'questionnaire/invalid_form.html')
+
+
+class ServicesType(View):
+    """
+    Страница с выбором типом услуг
+    """
+    def get(self, request: HttpRequest) -> HttpResponse:
+        question = Question.objects.get(title='Какие типы сервисов вы будете предоставлять в вашем заведении?')
+        selected_answers = Answer.objects.filter(survey__question=question)
+
+        form = SurveyForm(instance=question)
+        form.fields['answers'].queryset = selected_answers
+
+        context = {
+            'form': form,
+            'question': question
+        }
+
+        return render(request, 'questionnaire/services_type.html', context=context)
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        form = SurveyForm(request.POST)
+
+        if form.is_valid():
+            service_type = str(form.cleaned_data['answers'][0].text)
+            name = request.session.get('new_institution')['name']
+            institution = Institution.objects.get(name=name)
+            institution.service_type = service_type
+            institution.save()
+            return redirect((reverse('questionnaire:account')))
+
+        return render(request, 'questionnaire/invalid_form.html')
+
+
+
+
+
+
