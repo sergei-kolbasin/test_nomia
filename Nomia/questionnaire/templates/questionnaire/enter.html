@@ -1,0 +1,16 @@
+{% extends 'questionnaire/base.html' %}
+
+{% block title %}
+Enter
+{% endblock %}
+
+{% block body %}
+<h2>{{ question.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
