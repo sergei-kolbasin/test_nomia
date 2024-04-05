@@ -153,7 +153,7 @@ class Catering(View):
             'question': question
         }
 
-        return render(request, 'questionnaire/catering_type.html', context=context)
+        return render(request, 'questionnaire/catering.html', context=context)
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = SurveyForm(request.POST)
@@ -218,7 +218,7 @@ class Retail(View):
             'question': question
         }
 
-        return render(request, 'questionnaire/retail_type.html', context=context)
+        return render(request, 'questionnaire/retail.html', context=context)
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = SurveyForm(request.POST)
