@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
+from .config import question_titles
 from .forms import SurveyForm, InstitutionForm, BusinessForm
 from .models import Question, Answer, Institution
 
@@ -14,7 +15,7 @@ class EnterView(View):
     """
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Что вы хотите сделать?')
+        question = Question.objects.get(title=question_titles['enter_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -49,7 +50,7 @@ class CreateInstitution(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         form = InstitutionForm()
-        question = Question.objects.get(title='Создайте первое заведение')
+        question = Question.objects.get(title=question_titles['create_institution_question'])
 
         context = {
             'form': form,
@@ -101,7 +102,7 @@ class BusinessType(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         form = BusinessForm(request.POST)
-        question = Question.objects.get(title='Какой у Вас тип бизнеса?')
+        question = Question.objects.get(title=question_titles['business_type_question'])
 
         context = {
             'form': form,
@@ -142,7 +143,7 @@ class Catering(View):
     """
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Каким типом заведения вы владеете:')
+        question = Question.objects.get(title=question_titles['catering_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -175,7 +176,7 @@ class CateringType(View):
     """
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Какие типы сервисов вы будете предоставлять в вашем заведении?')
+        question = Question.objects.get(title=question_titles['catering_type_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -206,8 +207,9 @@ class Retail(View):
     """
     Страница с выбором типа ритейла
     """
+
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Выберите тип ритейла')
+        question = Question.objects.get(title=question_titles['retail_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -240,7 +242,7 @@ class RetailType(View):
     """
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Какой вид заказов?')
+        question = Question.objects.get(title=question_titles['retail_type_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -271,8 +273,9 @@ class ServicesType(View):
     """
     Страница с выбором типом услуг
     """
+
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Какие услуги оказывает Ваше заведение:')
+        question = Question.objects.get(title=question_titles['services_type_question'])
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
@@ -297,9 +300,3 @@ class ServicesType(View):
             return redirect((reverse('questionnaire:account')))
 
         return render(request, 'questionnaire/invalid_form.html')
-
-
-
-
-
-
