@@ -5,8 +5,10 @@
     <title>{% block title %}
 
     {% endblock %}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
+            font-family: 'Roboto', sans-serif;
             background-color: aqua;
             margin: 0;
             padding: 0;
@@ -29,11 +31,15 @@
             border: 2px solid black;
             text-align: center;
             padding-top: 50px;
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="header">Absolut POS</div>
+<header>
+    {% include 'questionnaire/header.html' %}
+</header>
+
     <div class="center-block">
         {% block body %}
 
@@ -45,5 +51,9 @@
             window.history.back();
         }
     </script>
+
+<footer>
+    {% include 'questionnaire/footer.html' %}
+</footer>
 </body>
 </html>
