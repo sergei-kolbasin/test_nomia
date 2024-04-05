@@ -272,7 +272,7 @@ class ServicesType(View):
     Страница с выбором типом услуг
     """
     def get(self, request: HttpRequest) -> HttpResponse:
-        question = Question.objects.get(title='Какие типы сервисов вы будете предоставлять в вашем заведении?')
+        question = Question.objects.get(title='Какие услуги оказывает Ваше заведение:')
         selected_answers = Answer.objects.filter(survey__question=question)
 
         form = SurveyForm(instance=question)
