@@ -13,6 +13,7 @@
 Логин: sergei Пароль:Qawsed123
 4. Картинки с ответами будут сохранятся в answers_pictures/{filename} благодаря функции answer_image_directory_path
 5. Админка настроена и переведена на русский язык
+6. В приложении реализована сессия с формами, поэтому Goоgle будет навязчиво вам предлагать сохранить данные, не слушайтесь 
 
 ## Как запустить проект 
 
@@ -35,4 +36,17 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
-5. После запуска сервера перейдите по адресу http://localhost:8000/
+5. После запуска сервера перейдите по адресу http://localhost:8000/login и введи логин ипароль от суперюзера
+
+## Структура проекта:
+
+- Сам проект находится в папке [Nomia](https://github.com/skolbasin/test_nomia/tree/main/Nomia), которая в свою очередь состоит из 3 директорий: [Nomia](https://github.com/skolbasin/test_nomia/tree/main/Nomia/Nomia)(основные настройки проекта), [auth_user](https://github.com/skolbasin/test_nomia/tree/main/Nomia/auth_user)(авторизация пользователя), [questionnaire](https://github.com/skolbasin/test_nomia/tree/main/Nomia/questionnaire)(древовидная анкета)
+- Весь фронтенд реализован в папке questionnaire/templates. По умолчанию любая статика(за исключением иконок ответов на вопросы) будет сохраняться в static/
+- url описаны в файле urls.py
+- В проекте реализовано 4 модели в файле models.py:
+  - Institution(заведение) В процессе заполнения анкеты в данную модель поэтапно сохраняются данные о заведении
+  - Question(вопрос)
+  - Answer(ответ)
+  - Survey(опрос) Состоит из одного вопроса и нескольки ответов
+
+- Для отправки данных из анкеты на сервер, используются DjangoForms в файле forms.py
