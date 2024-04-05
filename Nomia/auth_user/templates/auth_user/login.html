@@ -11,11 +11,13 @@ Login
         <label for="username">Введите Ваш логин:</label>
         <input type="text" id="username" name="username" required>
     </p>
-        <p>
+    <p>
         <label for="password">Введите Ваш пароль:</label>
         <input type="password" id="password" name="password" required>
     </p>
-    </form>
     <button type="submit">Войти</button>
-
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</form>
 {% endblock %}
