@@ -131,7 +131,7 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
             'filename': 'AllLogs.log',
             'when': 'midnight',
             'backupCount': 7,
