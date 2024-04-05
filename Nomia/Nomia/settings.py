@@ -133,6 +133,8 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'AllLogs.log',
+            'when': 'midnight',
+            'backupCount': 7,
             'formatter': 'standard_format',
         },
     },
