@@ -20,7 +20,7 @@
 
 1. Клонировать репозиторий:
 ```
-git clone https://github.com/Cur1yB/NOMIA
+git clone [https://github.com/Cur1yB/NOMIA](https://github.com/skolbasin/test_nomia.git)
 ```
 2. Установить зависимости из файла requirements.txt:
 ```
