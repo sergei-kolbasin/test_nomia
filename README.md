@@ -4,6 +4,7 @@
 Данное приложение сформировано под конкретный опросник от компании Nomia.
 В случае настройки опроса под себя необходимо поменять в файле config изменить ответы под себя и внести изменения в БД через админку
 
+Схема сценария анкеты с учётом авторизации - https://miro.com/welcomeonboard/UDRqWFBNdWtJQndMaUhqcVJVOU1PTWpQNjRKWlkyb0lCYTRrNVFhdFgwRVNZY241cXVCZTJSVEdvUlhROFNBMnwzNDU4NzY0NTg0NDU0NTY0OTg4fDI=?share_link_id=604127412494
 ## На что стоит обратить внимание:
 
 1. В проекте присутствует MakeFile. Если вы разворачивате приложение на Linux,
