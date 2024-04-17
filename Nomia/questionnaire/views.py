@@ -29,7 +29,7 @@ class EnterView(View):
             'question': question,
             'selected_answers': selected_answers
         }
-        logger.info('aaaa')
+        logger.info('Пользователь зашел на стартовую страницу')
         return render(request, 'questionnaire/enter.html', context=context)
 
     def post(self, request: HttpRequest) -> HttpResponse:
